@@ -5,7 +5,7 @@ using TestTaskShops.BLL.DTO;
 
 namespace TestTaskShops.BLL.Interfaces
 {
-    public interface IShopService
+    public interface IShopService : IDisposable
     {
         IEnumerable<ShopDTO> GetShops();
         void AddShop(ShopDTO shop);

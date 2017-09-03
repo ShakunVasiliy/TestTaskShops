@@ -9,7 +9,7 @@ using TestTaskShops.DAL.Interfaces;
 
 namespace TestTaskShops.DAL.Repositories
 {
-    public class EFUnitOfWork : IUnitOfWork, IDisposable
+    public class EFUnitOfWork : IUnitOfWork
     {
         private ShopsContext db;
         private ShopRepository shopRepository;

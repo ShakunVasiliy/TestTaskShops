@@ -46,6 +46,15 @@ namespace TestTaskShops.BLL.Services
             dataset.Shops.Delete(id);
         }
 
+        #region Disposable
+
+        public void Dispose()
+        {
+            dataset.Dispose();
+        }
+
+        #endregion Disposable
+
         #endregion IShopService
 
     }
