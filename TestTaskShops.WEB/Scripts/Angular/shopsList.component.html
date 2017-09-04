@@ -1,0 +1,65 @@
+﻿<h1>Список магазинов</h1>
+<input type="button" value="Добавить" class="btn btn-default" (click)="addShop()" />
+<input type="button" value="Обновить" class="btn btn-default" (click)="refresh()" />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Называние</td>
+            <td>Адрес</td>
+            <td>Режим работы</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let shop of shops">
+            <ng-template [ngTemplateOutlet]="loadTemplate(shop)"
+                         [ngOutletContext]="{ $implicit: shop}">
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-shop>
+    <td>{{shop.Id}}</td>
+    <td>{{shop.Name}}</td>
+    <td>{{shop.Address}}</td>
+    <td>{{shop.Mode}}</td>
+    <td>
+        <input type="button" value="Продукты" class="btn btn-default" (click)="showShopProducts(shop.Id)" />
+    </td>
+    <td>
+        <input type="button" value="Изменить" class="btn btn-default" (click)="editShop(shop)" />
+    </td>
+    <td>
+        <input type="button" value="Удалить" (click)="deleteShop(shop.Id)" class="btn btn-danger" />
+    </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <td>
+        <input type="text" [(ngModel)]="editingShop.Id" readonly disabled class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editingShop.Name" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editingShop.Address" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editingShop.Mode" class="form-control" />
+    </td>
+    <td>
+
+    </td>
+    <td>
+        <input type="button" value="Сохранить" (click)="saveShop()" class="btn btn-success" />
+    </td>
+    <td>
+        <input type="button" value="Отмена" (click)="cancelEdit()" class="btn btn-warning" />
+    </td>
+</ng-template>

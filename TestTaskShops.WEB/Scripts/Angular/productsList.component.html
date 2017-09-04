@@ -1,0 +1,51 @@
+﻿<input type="button" value="Добавить" class="btn btn-default" (click)="addProduct()" />
+<input type="button" value="Обновить" class="btn btn-default" (click)="refresh()" />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Называние</td>
+            <td>Описание</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <ng-template [ngTemplateOutlet]="loadTemplate(product)"
+                         [ngOutletContext]="{ $implicit: product}">
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-product>
+    <td>{{product.Id}}</td>
+    <td>{{product.Name}}</td>
+    <td>{{product.Description}}</td>
+    <td>
+        <input type="button" value="Изменить" class="btn btn-default" (click)="editProduct(product)" />
+    </td>
+    <td>
+        <input type="button" value="Удалить" (click)="deleteProduct(product.Id)" class="btn btn-danger" />
+    </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+    <td>
+        <input type="text" [(ngModel)]="editingProduct.Id" readonly disabled class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editingProduct.Name" class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editingProduct.Description" class="form-control" />
+    <td>
+        <input type="button" value="Сохранить" (click)="saveProduct()" class="btn btn-success" />
+    </td>
+    <td>
+        <input type="button" value="Отмена" (click)="cancelEdit()" class="btn btn-warning" />
+    </td>
+</ng-template>

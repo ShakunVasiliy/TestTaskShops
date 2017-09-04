@@ -1,0 +1,6 @@
+﻿<div [style.display]="shopsListDisplay">
+    <shops-list (onShowShopProducts)="onShowShopProducts($event)"></shops-list>
+</div>
+<div [style.display]="shopProductsDisplay">
+    <shop-products (onBack)="onShowShopsList($event)"></shop-products>
+</div>

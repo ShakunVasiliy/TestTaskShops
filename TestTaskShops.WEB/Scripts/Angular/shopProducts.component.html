@@ -1,0 +1,5 @@
+﻿<h1>Продукты магазина {{shopProducts.Shop.Name}}</h1>
+<input type="button" value="Назад" class="btn btn-default" (click)="back()"/>
+<products-list [products]="shopProducts.Products" 
+               [shopId]="shopProducts.Shop.Id" 
+               (onRefresh)="onRefrash($event)"></products-list>

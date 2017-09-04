@@ -7,43 +7,40 @@ using System.Web.Http;
 
 using TestTaskShops.BLL.DTO;
 using TestTaskShops.BLL.Interfaces;
+using TestTaskShops.BLL.Util;
+using TestTaskShops.WEB.Models;
 
 namespace TestTaskShops.WEB.Controllers
 {
-    public class ProductValuesController : ApiController
+    public class ProductsController : ApiController
     {
         private IProductService productService;
 
-        public ProductValuesController(IProductService productService)
+        public ProductsController(IProductService productService)
         {
             this.productService = productService;
         }
 
-        // GET api/<controller>
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Product product)
         {
+            ProductDTO productDto = MappingUtil.MapInstance<Product, ProductDTO>(product);
+
+            productService.AddProduct(productDto);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Product product)
         {
+            ProductDTO productDto = MappingUtil.MapInstance<Product, ProductDTO>(product);
+
+            productService.UpdateProduct(productDto);
         }
 
         // DELETE api/<controller>/5
         public void Delete(int id)
         {
+            productService.DeleteProduct(id);
         }
 
         protected override void Dispose(bool disposing)
