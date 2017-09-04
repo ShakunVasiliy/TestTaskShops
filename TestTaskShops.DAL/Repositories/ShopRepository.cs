@@ -40,8 +40,8 @@ namespace TestTaskShops.DAL.Repositories
         public void Update(Shop shop)
         {
             if (Get(shop.Id) == null) return;
-
-            db.Shops.Attach(shop);
+            
+            db.Entry(shop).State = EntityState.Modified;
 
             db.SaveChanges();
         }

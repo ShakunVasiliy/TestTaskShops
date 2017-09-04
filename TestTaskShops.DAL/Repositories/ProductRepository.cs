@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 using TestTaskShops.DAL.EF;
 using TestTaskShops.DAL.Entities;
@@ -45,7 +46,7 @@ namespace TestTaskShops.DAL.Repositories
         {
             if (Get(product.Id) == null) return;
 
-            db.Products.Attach(product);
+            db.Entry(product).State = EntityState.Modified;
 
             db.SaveChanges();
         }
