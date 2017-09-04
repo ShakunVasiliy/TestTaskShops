@@ -27,6 +27,13 @@ namespace TestTaskShops.BLL.Services
             return shops;
         }
 
+        public ShopDTO GetShop(int id)
+        {
+            var shop = dataset.Shops.Get(id);
+
+            return MappingUtil.MapInstance<Shop, ShopDTO>(shop);
+        }
+
         public void AddShop(ShopDTO shopDto)
         {
             Shop shop = MappingUtil.MapInstance<ShopDTO, Shop>(shopDto);
