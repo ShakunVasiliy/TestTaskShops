@@ -62,6 +62,20 @@ namespace TestTaskShops.DAL.Repositories
             db.SaveChanges();
         }
 
+        public void DeleteShopProducts(int shopId)
+        {
+            var shopProducts = from p in db.Products
+                               where p.ShopId == shopId
+                               select p;
+
+            foreach (var product in shopProducts)
+            {
+                db.Products.Remove(product);
+            }
+
+            db.SaveChanges();
+        }
+
         #endregion IProductRepository
     }
 }

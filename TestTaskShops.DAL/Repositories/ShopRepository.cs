@@ -18,6 +18,13 @@ namespace TestTaskShops.DAL.Repositories
             db = context;
         }
 
+        private void DeleteShopProducts(int shopId)
+        {
+            var productRepository = new ProductRepository(db);
+            productRepository.DeleteShopProducts(shopId);
+
+        }
+
         #region IShopRepository
 
         public IEnumerable<Shop> GetAll()
@@ -48,14 +55,23 @@ namespace TestTaskShops.DAL.Repositories
 
         public void Delete(int id)
         {
-            var shop = db.Shops.Include("Products").Where(s => s.Id == id).FirstOrDefault();
+            var shop = Get(id);
 
             if (shop == null) return;
 
-            shop.Products.Clear();
-            db.Shops.Remove(shop);
+            DeleteShopProducts(id);
+            db.Entry(shop).State = EntityState.Deleted;
 
             db.SaveChanges();
+
+            //var shop = db.Shops.Include("Products").Where(s => s.Id == id).FirstOrDefault();
+
+            //if (shop == null) return;
+
+            //shop.Products.Clear();
+            //db.Shops.Remove(shop);
+
+            //db.SaveChanges();
         }
 
         #endregion IShopRepository

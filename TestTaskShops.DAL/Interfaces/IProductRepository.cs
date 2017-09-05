@@ -8,5 +8,6 @@ namespace TestTaskShops.DAL.Interfaces
     public interface IProductRepository : IRepository<Product>
     {
         IEnumerable<Product> GetByShop(int shopId);
+        void DeleteShopProducts(int shopId);
     }
 }
