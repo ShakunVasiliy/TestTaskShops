@@ -7,6 +7,7 @@ using System.Web.Http;
 
 using TestTaskShops.BLL.DTO;
 using TestTaskShops.BLL.Interfaces;
+using TestTaskShops.BLL.Infrastructure;
 using TestTaskShops.BLL.Util;
 using TestTaskShops.WEB.Models;
 
@@ -31,25 +32,52 @@ namespace TestTaskShops.WEB.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]Shop shop)
+        public IHttpActionResult Post([FromBody]Shop shop)
         {
             ShopDTO shopDto = MappingUtil.MapInstance<Shop, ShopDTO>(shop);
 
-            shopService.AddShop(shopDto);
+            try
+            {
+                shopService.AddShop(shopDto);
+            }
+            catch (EntityValidationExeption ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]Shop shop)
+        public IHttpActionResult Put(int id, [FromBody]Shop shop)
         {
             ShopDTO shopDto = MappingUtil.MapInstance<Shop, ShopDTO>(shop);
 
-            shopService.UpdateShop(shopDto);
+            try
+            {
+                shopService.UpdateShop(shopDto);
+            }
+            catch (EntityValidationExeption ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
 
         // DELETE api/<controller>/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            shopService.DeleteShop(id);
+            try
+            {
+                shopService.DeleteShop(id);
+            }
+            catch (EntityValidationExeption ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

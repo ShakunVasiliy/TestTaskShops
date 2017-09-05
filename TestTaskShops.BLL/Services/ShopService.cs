@@ -12,10 +12,12 @@ namespace TestTaskShops.BLL.Services
     public class ShopService : IShopService
     {
         private IUnitOfWork dataset;
+        private IValidator<Shop> validator;
 
-        public ShopService(IUnitOfWork uow)
+        public ShopService(IUnitOfWork uow, IValidator<Shop> validator)
         {
             dataset = uow;
+            this.validator = validator;
         }
 
         #region IShopService
@@ -38,12 +40,16 @@ namespace TestTaskShops.BLL.Services
         {
             Shop shop = MappingUtil.MapInstance<ShopDTO, Shop>(shopDto);
 
+            validator.Validate(shop);
+
             dataset.Shops.Create(shop);
         }
 
         public void UpdateShop(ShopDTO shopDto)
         {
             Shop shop = MappingUtil.MapInstance<ShopDTO, Shop>(shopDto);
+
+            validator.Validate(shop);
 
             dataset.Shops.Update(shop);
         }

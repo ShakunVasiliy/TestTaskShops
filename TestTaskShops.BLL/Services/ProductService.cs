@@ -12,10 +12,12 @@ namespace TestTaskShops.BLL.Services
     public class ProductService : IProductService
     {
         private IUnitOfWork dataset;
+        private IValidator<Product> validator;
 
-        public ProductService(IUnitOfWork uow)
+        public ProductService(IUnitOfWork uow, IValidator<Product> validator)
         {
             dataset = uow;
+            this.validator = validator;
         }
 
         #region IProductService
@@ -32,12 +34,16 @@ namespace TestTaskShops.BLL.Services
         {
             Product product = MappingUtil.MapInstance<ProductDTO, Product>(productDto);
 
+            validator.Validate(product);
+
             dataset.Products.Create(product);
         }
 
         public void UpdateProduct(ProductDTO productDto)
         {
             Product product = MappingUtil.MapInstance<ProductDTO, Product>(productDto);
+
+            validator.Validate(product);
 
             dataset.Products.Update(product);
         }

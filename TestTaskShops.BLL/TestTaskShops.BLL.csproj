@@ -48,9 +48,13 @@
   <ItemGroup>
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\ShopDTO.cs" />
+    <Compile Include="Infrastructure\ProductValidator.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
+    <Compile Include="Infrastructure\EntityValidationExeption.cs" />
+    <Compile Include="Infrastructure\ShopValidator.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\IShopService.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ShopService.cs" />
