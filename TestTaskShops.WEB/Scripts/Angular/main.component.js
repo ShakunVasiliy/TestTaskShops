@@ -12,19 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var shopsList_component_1 = require("./shopsList.component");
 var shopProducts_component_1 = require("./shopProducts.component");
+var displayValues_1 = require("./displayValues");
 var MainComponent = (function () {
     function MainComponent() {
-        this.shopsListDisplay = 'block';
-        this.shopProductsDisplay = 'none';
+        this.shopsListDisplay = displayValues_1.DisplayValues.block;
+        this.shopProductsDisplay = displayValues_1.DisplayValues.none;
     }
     MainComponent.prototype.onShowShopProducts = function (shopId) {
-        this.shopsListDisplay = 'none';
-        this.shopProductsDisplay = 'block';
+        this.shopsListDisplay = displayValues_1.DisplayValues.none;
+        this.shopProductsDisplay = displayValues_1.DisplayValues.block;
         this.shopProductsComponent.loadShopProducts(shopId);
     };
     MainComponent.prototype.onShowShopsList = function () {
-        this.shopsListDisplay = 'block';
-        this.shopProductsDisplay = 'none';
+        this.shopsListDisplay = displayValues_1.DisplayValues.block;
+        this.shopProductsDisplay = displayValues_1.DisplayValues.none;
         this.shopsListComponent.loadShops();
     };
     return MainComponent;

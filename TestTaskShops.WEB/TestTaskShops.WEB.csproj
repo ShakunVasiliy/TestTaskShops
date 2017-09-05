@@ -256,10 +256,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Angular\displayValues.ts" />
     <TypeScriptCompile Include="Scripts\Angular\productsList.component.ts" />
     <TypeScriptCompile Include="Scripts\Angular\shopProducts.component.ts" />
     <TypeScriptCompile Include="Scripts\Angular\shopProducts.model.ts" />
     <TypeScriptCompile Include="Scripts\Angular\shopProducts.service.ts" />
+    <Content Include="Scripts\Angular\systemImportApp.js" />
     <TypeScriptCompile Include="Scripts\Angular\webApi.ts" />
     <TypeScriptCompile Include="Scripts\Angular\main.component.ts" />
     <TypeScriptCompile Include="Scripts\Angular\main.ts" />

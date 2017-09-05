@@ -23,6 +23,13 @@ namespace TestTaskShops.WEB
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/Angular").Include(
+               "~/node_modules/core-js/client/shim.min.js",
+               "~/node_modules/zone.js/dist/zone.js",
+               "~/node_modules/systemjs/dist/system.src.js",
+               "~/systemjs.config.js",
+               "~/Scripts/Angular/systemImportApp.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

@@ -41,6 +41,7 @@ var ShopsListComponent = (function () {
     ShopsListComponent.prototype.editShop = function (shop) {
         if (shop.Id === null)
             return;
+        this.cancelEdit();
         this.editingShop = new shop_model_1.Shop(shop.Id, shop.Name, shop.Address, shop.Mode);
         this.isNewShop = false;
     };

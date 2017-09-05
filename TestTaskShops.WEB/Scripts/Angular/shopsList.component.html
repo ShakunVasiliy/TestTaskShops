@@ -45,7 +45,8 @@
         <input type="text" [(ngModel)]="editingShop.Id" readonly disabled class="form-control" />
     </td>
     <td>
-        <input type="text" [(ngModel)]="editingShop.Name" class="form-control" />
+        <input type="text" [(ngModel)]="editingShop.Name" class="form-control" #name="ngModel" required />
+        <div [hidden]="name.valid || name.untouched" class="alert alert-danger">Название не указано!</div>
     </td>
     <td>
         <input type="text" [(ngModel)]="editingShop.Address" class="form-control" />
@@ -57,7 +58,7 @@
 
     </td>
     <td>
-        <input type="button" value="Сохранить" (click)="saveShop()" class="btn btn-success" />
+        <input type="button" [disabled]="name.invalid" value="Сохранить" (click)="saveShop()" class="btn btn-success" />
     </td>
     <td>
         <input type="button" value="Отмена" (click)="cancelEdit()" class="btn btn-warning" />

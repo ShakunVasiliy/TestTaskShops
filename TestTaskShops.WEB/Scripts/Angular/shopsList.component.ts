@@ -57,6 +57,8 @@ export class ShopsListComponent implements OnInit {
     editShop(shop: Shop) {
         if (shop.Id === null) return;
 
+        this.cancelEdit();
+
         this.editingShop = new Shop(shop.Id, shop.Name, shop.Address, shop.Mode);
         this.isNewShop = false;
     }

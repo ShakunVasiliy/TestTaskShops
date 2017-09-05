@@ -41,6 +41,7 @@ var ProductsListComponent = (function () {
     ProductsListComponent.prototype.editProduct = function (product) {
         if (product.Id === null)
             return;
+        this.cancelEdit();
         this.editingProduct = new product_model_1.Product(product.Id, product.Name, product.Description, product.ShopId);
         this.isNewProduct = false;
     };

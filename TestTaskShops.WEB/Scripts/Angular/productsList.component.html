@@ -38,12 +38,13 @@
         <input type="text" [(ngModel)]="editingProduct.Id" readonly disabled class="form-control" />
     </td>
     <td>
-        <input type="text" [(ngModel)]="editingProduct.Name" class="form-control" />
+        <input type="text" [(ngModel)]="editingProduct.Name" class="form-control" #name="ngModel" required />
+        <div [hidden]="name.valid || name.untouched" class="alert alert-danger">Название не указано!</div>
     </td>
     <td>
         <input type="text" [(ngModel)]="editingProduct.Description" class="form-control" />
     <td>
-        <input type="button" value="Сохранить" (click)="saveProduct()" class="btn btn-success" />
+        <input type="button" [disabled]="name.invalid" value="Сохранить" (click)="saveProduct()" class="btn btn-success" />
     </td>
     <td>
         <input type="button" value="Отмена" (click)="cancelEdit()" class="btn btn-warning" />

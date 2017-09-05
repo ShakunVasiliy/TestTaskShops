@@ -2,6 +2,7 @@
 
 import { ShopsListComponent } from './shopsList.component';
 import { ShopProductsComponent } from './shopProducts.component';
+import { DisplayValues } from './displayValues';
 
 @Component({
     selector: 'main',
@@ -20,20 +21,20 @@ export class MainComponent {
 
     constructor()
     {
-        this.shopsListDisplay = 'block';
-        this.shopProductsDisplay = 'none';
+        this.shopsListDisplay = DisplayValues.block;
+        this.shopProductsDisplay = DisplayValues.none;
     }
 
     onShowShopProducts(shopId: number) {
-        this.shopsListDisplay = 'none';
-        this.shopProductsDisplay = 'block';
+        this.shopsListDisplay = DisplayValues.none;
+        this.shopProductsDisplay = DisplayValues.block;
 
         this.shopProductsComponent.loadShopProducts(shopId);
     }
 
     onShowShopsList() {
-        this.shopsListDisplay = 'block';
-        this.shopProductsDisplay = 'none';
+        this.shopsListDisplay = DisplayValues.block;
+        this.shopProductsDisplay = DisplayValues.none;
 
         this.shopsListComponent.loadShops();
     }

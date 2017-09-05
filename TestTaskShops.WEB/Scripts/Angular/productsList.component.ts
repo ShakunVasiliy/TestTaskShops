@@ -50,6 +50,8 @@ export class ProductsListComponent {
     editProduct(product: Product) {
         if (product.Id === null) return;
 
+        this.cancelEdit();
+
         this.editingProduct = new Product(product.Id, product.Name, product.Description, product.ShopId);
         this.isNewProduct = false;
     }
